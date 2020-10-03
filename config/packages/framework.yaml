@@ -16,4 +16,5 @@ framework:
     php_errors:
         log: true
 
+    #ide sirve apra establecer el IDE por defecto, en este caso Visual Studio Code
     ide: vscode
