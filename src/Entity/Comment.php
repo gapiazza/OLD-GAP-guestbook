@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @Vich\Uploadable()
  */
 class Comment
 {
@@ -44,9 +46,24 @@ class Comment
     private $conference;
 
     /**
+     * @Vich\UploadableField(mapping="thumbnails",fileNameProperty="photoFilename")
+     */
+    private $thumbnail;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photoFilename;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateAt;
+
+    public function __construct()
+    {
+        $this->updateAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -121,7 +138,22 @@ class Comment
     public function setPhotoFilename(?string $photoFilename): self
     {
         $this->photoFilename = $photoFilename;
+        
+        return $this;
+    }
+
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail($thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        if($thumbnail) $this->updateAt = new \DateTime();
 
         return $this;
     }
+
 }

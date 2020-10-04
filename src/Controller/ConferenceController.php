@@ -11,7 +11,7 @@ class ConferenceController extends AbstractController
 {
     /**
      * Route("/conference", name="conference")
-     * @Route("/{name}", name="homepage")
+     * @Route("/name/{name}", name="homepage")
      */
     public function index(Request $request, string $name = '')
     {
