@@ -3,9 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Comment;
-use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
-// use App\Entity\Conference;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -20,7 +22,14 @@ class CommentCrudController extends AbstractCrudController
         return Comment::class;
     }
 
-    
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->add(Crud::PAGE_INDEX, Action::DETAIL)
+            // ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
+        ;
+    }
+
     public function configureFields(string $pageName): iterable
     {
         // Sirve para cargar un archivo con el complemento Vich.
@@ -46,5 +55,13 @@ class CommentCrudController extends AbstractCrudController
 
         return $fields;
     }
-    
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('author')
+            ->add('conference')
+            ->add('createdAt')
+        ;
+    }
 }
