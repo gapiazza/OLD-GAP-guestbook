@@ -8,6 +8,7 @@ framework:
     # Remove or comment this section to explicitly disable session support.
     session:
         handler_id: null
+        # handler_id: '%env(REDIS_URL)%'
         cookie_secure: auto
         cookie_samesite: lax
 
@@ -18,3 +19,4 @@ framework:
 
     #ide sirve apra establecer el IDE por defecto, en este caso Visual Studio Code
     ide: vscode
+    

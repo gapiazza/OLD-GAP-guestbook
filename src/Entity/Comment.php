@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentRepository;
+use App\Entity\Conference;
+// use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable()
  */
 class Comment
@@ -59,6 +61,14 @@ class Comment
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updateAt;
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     public function __construct()
     {
@@ -155,5 +165,4 @@ class Comment
 
         return $this;
     }
-
 }

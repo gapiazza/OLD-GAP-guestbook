@@ -38,6 +38,7 @@ class ConferenceCrudController extends AbstractCrudController
         // Verifico en que pagina estoy y en fucnion de esto utilizo una u otra variable.
         if($pageName == Crud::PAGE_INDEX or $pageName == Crud::PAGE_DETAIL) {
             $fields[] = CollectionField::new('comments');
+            $fields[] = TextField::new('slug');
         }
 
         return $fields;
