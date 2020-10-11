@@ -5,6 +5,8 @@
     
     {% if comments|length > 0 %}
         <div>There are {{ comments|length }} comments.</div>
+
+        </br>
         {% for comment in comments %}
             {% if comment.photofilename %}
                 <img src="{{ asset('images/thumbnails/' ~ comment.photofilename) }}" />
