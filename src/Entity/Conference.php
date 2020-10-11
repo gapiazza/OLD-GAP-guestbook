@@ -7,12 +7,21 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+<<<<<<< HEAD
 // use Doctrine\DBAL\Schema\Constraint;
 // use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ConferenceRepository::class)
+=======
+// use Symfony\Component\Validator\Constraints as Assert;
+// use Symfony\Component\String\Slugger\SluggerInterface;
+
+/**
+ * @ORM\Entity(repositoryClass=ConferenceRepository::class)
+ * ORM\HasLifecycleCallbacks()
+>>>>>>> 38b3ecbaa69b159425893fd162b1dd9a94563847
  * @UniqueEntity("slug")
  */
 class Conference
@@ -61,6 +70,7 @@ class Conference
         $this->comments = new ArrayCollection();
     }
 
+<<<<<<< HEAD
     public function computeSlug(SluggerInterface $slugger)
     {
         if (!$this->slug or '-' === $this->slug) 
@@ -68,6 +78,17 @@ class Conference
             $this->slug = (string) $slugger->slug((string) $this)->lower();
         }
     }
+=======
+    // /**
+    //  * @ORM\PrePersist
+    //  */
+    // public function setCreatedAtValue()
+    // {
+    //     $this->slug = $this->city . '-' . $this->year;
+    // }
+
+
+>>>>>>> 38b3ecbaa69b159425893fd162b1dd9a94563847
 
 
 
