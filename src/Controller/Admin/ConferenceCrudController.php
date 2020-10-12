@@ -3,13 +3,15 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Conference;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+// use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class ConferenceCrudController extends AbstractCrudController
 {
@@ -39,6 +41,8 @@ class ConferenceCrudController extends AbstractCrudController
         if($pageName == Crud::PAGE_INDEX or $pageName == Crud::PAGE_DETAIL) {
             $fields[] = CollectionField::new('comments');
             $fields[] = TextField::new('slug');
+            // $fields[] = DateTimeField::new('updatedAt');
+            $fields[] = IntegerField::new('id');
         }
 
         return $fields;

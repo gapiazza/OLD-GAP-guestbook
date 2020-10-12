@@ -42,13 +42,14 @@ class CommentCrudController extends AbstractCrudController
             TextField::new('email'),
             AssociationField::new('conference')->autocomplete(),
             TextEditorField::new('text'),
-            DateTimeField::new('createdAt'),
+            // DateTimeField::new('createdAt'),
            
         ];
 
         // Verifico en que pagina estoy y en fucnion de esto utilizo una u otra variable.
         if($pageName == Crud::PAGE_INDEX or $pageName == Crud::PAGE_DETAIL) {
             $fields[] = $photoFilename;
+            $fields[] = DateTimeField::new('createdAt');
         } else {
             $fields[] = $thumbnail;
         }

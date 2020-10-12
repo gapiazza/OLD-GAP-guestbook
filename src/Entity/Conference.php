@@ -7,21 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-<<<<<<< HEAD
-// use Doctrine\DBAL\Schema\Constraint;
 // use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use App\EntityListener\ConferenceEntityListener;
+
 
 /**
  * @ORM\Entity(repositoryClass=ConferenceRepository::class)
-=======
-// use Symfony\Component\Validator\Constraints as Assert;
-// use Symfony\Component\String\Slugger\SluggerInterface;
-
-/**
- * @ORM\Entity(repositoryClass=ConferenceRepository::class)
- * ORM\HasLifecycleCallbacks()
->>>>>>> 38b3ecbaa69b159425893fd162b1dd9a94563847
  * @UniqueEntity("slug")
  */
 class Conference
@@ -70,15 +62,6 @@ class Conference
         $this->comments = new ArrayCollection();
     }
 
-<<<<<<< HEAD
-    public function computeSlug(SluggerInterface $slugger)
-    {
-        if (!$this->slug or '-' === $this->slug) 
-        {
-            $this->slug = (string) $slugger->slug((string) $this)->lower();
-        }
-    }
-=======
     // /**
     //  * @ORM\PrePersist
     //  */
@@ -87,8 +70,21 @@ class Conference
     //     $this->slug = $this->city . '-' . $this->year;
     // }
 
+    // Genera un slug
+    public function computeSlug(SluggerInterface $slugger)
+    {
+        // Lo anulo porque fuerzo que siempre se actualice el slug.
+        // if (!$this->slug or $this->slug === '-') 
+        // {
+        //     $this->slug = (string) $slugger->slug((string) $this)->lower();
+        // }
 
->>>>>>> 38b3ecbaa69b159425893fd162b1dd9a94563847
+        $this->slug = (string) $slugger->slug((string) $this)->lower();
+    }
+
+
+
+
 
 
 

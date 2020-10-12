@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Conference;
-// use App\Repository\CommentRepository;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
