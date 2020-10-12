@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use App\Controller\Admin\ConferenceCrudController;
 use App\Entity\Conference;
 use App\Entity\Comment;
+use App\Entity\Admin;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -77,6 +78,9 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Comment', 'fa fa-comment', Comment::class)
                 ->setQueryParameter('sortField', 'createdAt')
                 ->setQueryParameter('sortDirection', 'DESC'),
+
+            MenuItem::section('Users'),
+            MenuItem::linkToCrud('User', 'fa fa-user', Admin::class),
         ];
     }
 }
